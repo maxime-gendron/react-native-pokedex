@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 
-export const ListItem = ({ item }) => {
+export const ListItem = ({ item, navigation }) => {
   const [pokemon, setPokemon] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +24,10 @@ export const ListItem = ({ item }) => {
 
   if (loading) return null;
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate("Details", { pokemon })}
+    >
       {pokemon && (
         <>
           <Image
@@ -28,27 +37,26 @@ export const ListItem = ({ item }) => {
           <Text style={styles.text}>{pokemon.name}</Text>
         </>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '33.33%',
-    flexBasis: '33.33%',
+    display: "flex",
+    alignItems: "center",
+    width: "33.33%",
+    flexBasis: "33.33%",
     marginTop: 16,
-    // marginBottom: 8,
   },
   logo: {
-    width: '100%',
-    height: Dimensions.get('window').height / 10,
+    width: "100%",
+    height: Dimensions.get("window").height / 10,
   },
   text: {
     fontSize: 18,
-    color: '#fff',
+    color: "#fff",
     marginTop: 8,
-    textTransform: "capitalize"
-  }
+    textTransform: "capitalize",
+  },
 });

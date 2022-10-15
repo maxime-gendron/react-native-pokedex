@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from "react-native";
+import { theme } from "../utils/theme";
 
 export const Pagination = ({ numberOfPages, currentPage, onChange }) => {
   const pagesData = [...Array(numberOfPages).keys()].map((value) => ({
@@ -15,7 +16,7 @@ export const Pagination = ({ numberOfPages, currentPage, onChange }) => {
   );
 
   return (
-    <SafeAreaView style={styles.pagesContainer}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         horizontal
         data={pagesData}
@@ -27,39 +28,59 @@ export const Pagination = ({ numberOfPages, currentPage, onChange }) => {
 };
 
 const Item = ({ active, pageNumber, onTouch }) => (
-  <View onTouchStart={onTouch} style={active ? styles.pageItemContainerActive : styles.pageItemContainer}>
-    <Text style={active ? styles.textActive : undefined}>{pageNumber}</Text>
+  <View
+    onTouchStart={onTouch}
+    style={active ? styles.pageItemContainerActive : styles.pageItemContainer}
+  >
+    <Text style={active ? styles.textActive : styles.text}>{pageNumber}</Text>
   </View>
 );
 
-const pageItemCommonStyles = {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    height: 48,
-    width: 48,
-    borderRadius: 8,
-    marginRight: 4,
-}
+const pageItemContainerCommonStyles = {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  height: 48,
+  width: 48,
+  borderRadius: 100,
+  marginRight: 4,
+};
 
 const styles = StyleSheet.create({
-  pagesContainer: {
+  container: {
     flex: 1,
     alignItems: "center",
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     flexBasis: "10%",
+    position: "absolute",
+    bottom: 0,
+    paddingTop: 16,
+    paddingBottom: 16,
+    backgroundColor: theme.primary,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+    elevation: 14,
   },
   pageItemContainer: {
-    ...pageItemCommonStyles,
+    ...pageItemContainerCommonStyles,
     backgroundColor: "#fff",
+    borderWidth: 2,
+    borderColor: theme.secondary,
   },
   pageItemContainerActive: {
-    ...pageItemCommonStyles,
-    backgroundColor: "#000",
-    color: "#fff",
+    ...pageItemContainerCommonStyles,
+    backgroundColor: theme.secondary,
+  },
+  text: {
+    color: theme.secondary,
   },
   textActive: {
     color: "#fff",
-  }
+  },
 });
