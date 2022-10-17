@@ -11,7 +11,7 @@ export const Home = ({ navigation }) => {
 
   useEffect(() => {
     const fetchPokemons = async () => {
-      const numberOfPokemonsPerPage = 30;
+      const numberOfPokemonsPerPage = 39;
       const offset = currentPage * numberOfPokemonsPerPage;
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemonsPerPage}}&offset=${offset}`
@@ -27,7 +27,9 @@ export const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {loading && pokemons ? (
-        <Text>...Loading</Text>
+        <View style={styles.centerContent}>
+          <Text style={styles.loadingText}>...Loading</Text>
+        </View>
       ) : (
         <>
           <ScrollView contentContainerStyle={styles.pokemonContainer}>
@@ -51,19 +53,23 @@ export const Home = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.primary,
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
+  centerContent: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+  },
+  loadingText: {
+    color: "#fff",
+    fontSize: 24,
+  },
   pokemonContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     paddingBottom: 104,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: theme.primary,
-    paddingTop: StatusBar.currentHeight,
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
   },
 });

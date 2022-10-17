@@ -7,7 +7,7 @@ export const Details = ({ navigation, route }) => {
   const { pokemon } = route.params;
   const sectionListData = [
     {
-      title: pokemon.types?.length > 1 ? "Types" : "Type",
+      title: pokemon.types.length > 1 ? "Types" : "Type",
       data: pokemon.types,
     },
     {
@@ -16,14 +16,12 @@ export const Details = ({ navigation, route }) => {
     },
   ];
 
-  console.log(pokemon);
-
   return (
     <View style={styles.container}>
       <BackButton navigation={navigation} />
       <View style={styles.identificationContainer}>
         <Image
-          style={styles.image}
+          style={styles.avatarImage}
           source={{ uri: pokemon.sprites.front_default }}
         />
         <Text style={styles.identificationText}>{pokemon.name}</Text>
@@ -35,37 +33,36 @@ export const Details = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: theme.primary,
-    paddingTop: StatusBar.currentHeight,
-    paddingHorizontal: 16,
+    flex: 1,
     paddingBottom: 32,
+    paddingHorizontal: 16,
+    paddingTop: StatusBar.currentHeight,
   },
-  image: {
-    height: 180,
-    width: 180,
+  avatarImage: {
     backgroundColor: theme.secondary,
+    borderColor: "#fff",
     borderRadius: 100,
     borderWidth: 4,
-    borderColor: "white",
+    height: 180,
+    width: 180,
   },
   identificationContainer: {
     alignItems: "center",
     marginBottom: 16,
   },
   identificationText: {
+    color: "#fff",
     fontSize: 40,
     fontWeight: "bold",
     textTransform: "capitalize",
-    color: "white",
   },
   dataContainer: {
-    flexDirection: "column",
     marginBottom: 32,
   },
   sectionHeading: {
+    color: "black",
     fontSize: 32,
     fontWeight: "bold",
-    color: "black",
   },
 });

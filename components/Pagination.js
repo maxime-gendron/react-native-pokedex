@@ -30,34 +30,27 @@ export const Pagination = ({ numberOfPages, currentPage, onChange }) => {
 const Item = ({ active, pageNumber, onTouch }) => (
   <View
     onTouchStart={onTouch}
-    style={active ? styles.pageItemContainerActive : styles.pageItemContainer}
+    style={active ? styles.pageItemActive : styles.pageItem}
   >
     <Text style={active ? styles.textActive : styles.text}>{pageNumber}</Text>
   </View>
 );
 
-const pageItemContainerCommonStyles = {
-  flex: 1,
-  justifyContent: "center",
+const pageItemCommonStyles = {
   alignItems: "center",
-  height: 48,
-  width: 48,
   borderRadius: 100,
+  height: 52,
+  justifyContent: "center",
   marginRight: 4,
+  width: 52,
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
-    width: "100%",
-    justifyContent: "flex-end",
-    flexBasis: "10%",
-    position: "absolute",
-    bottom: 0,
-    paddingTop: 16,
-    paddingBottom: 16,
     backgroundColor: theme.primary,
+    elevation: 14,
+    paddingVertical: 16,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -65,22 +58,24 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.41,
     shadowRadius: 9.11,
-    elevation: 14,
+    width: "100%",
   },
-  pageItemContainer: {
-    ...pageItemContainerCommonStyles,
+  pageItem: {
+    ...pageItemCommonStyles,
     backgroundColor: "#fff",
-    borderWidth: 2,
     borderColor: theme.secondary,
+    borderWidth: 2,
   },
-  pageItemContainerActive: {
-    ...pageItemContainerCommonStyles,
+  pageItemActive: {
+    ...pageItemCommonStyles,
     backgroundColor: theme.secondary,
   },
   text: {
     color: theme.secondary,
+    fontSize: 18,
   },
   textActive: {
     color: "#fff",
+    fontSize: 18,
   },
 });

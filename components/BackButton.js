@@ -7,7 +7,7 @@ export const BackButton = ({ navigation }) => {
       style={styles.container}
       onPress={() => navigation.goBack()}
     >
-      <Ionicons name="md-arrow-back" size={32} color="white" />
+      <Ionicons name="md-arrow-back" size={32} color="#fff" />
       <Text style={styles.backButtonText}>Back to pokemons</Text>
     </TouchableOpacity>
   );
@@ -15,14 +15,14 @@ export const BackButton = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 64,
-    flexDirection: "row",
     alignItems: "center",
+    flexDirection: "row",
+    height: 64,
     marginBottom: 24,
   },
   backButtonText: {
-    marginLeft: 8,
+    color: "#fff",
     fontSize: 24,
-    color: "white",
+    marginLeft: 8,
   },
 });

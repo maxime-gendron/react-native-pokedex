@@ -31,7 +31,7 @@ export const ListItem = ({ item, navigation }) => {
       {pokemon && (
         <>
           <Image
-            style={styles.logo}
+            style={styles.image}
             source={{ uri: pokemon.sprites.front_default }}
           />
           <Text style={styles.text}>{pokemon.name}</Text>
@@ -43,19 +43,18 @@ export const ListItem = ({ item, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     alignItems: "center",
-    width: "33.33%",
     flexBasis: "33.33%",
     marginTop: 16,
+    width: "33.33%",
   },
-  logo: {
-    width: "100%",
+  image: {
     height: Dimensions.get("window").height / 10,
+    width: "100%",
   },
   text: {
-    fontSize: 18,
     color: "#fff",
+    fontSize: 18,
     marginTop: 8,
     textTransform: "capitalize",
   },
